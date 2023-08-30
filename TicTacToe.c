@@ -37,42 +37,22 @@ int main(void)
 		bool potracker[10] = {false,false,false,false,false,false,false,false,false,false};
 		//end = 'a';
 		
-		printf("Choose X or O: \n");
-		scanf(" %c", &playerToken);
-		
-		//Scan check
-		while(playerToken != 'x' || playerToken != 'X' || playerToken != 'o' || playerToken != 'O')
+		for (;;)
 		{
-			printf("Try again: Choose X or O: \n");
+			printf("Choose X or O: \n");
 			scanf(" %c", &playerToken);
-				if(playerToken == 'x' || playerToken == 'X' || playerToken == 'o' || playerToken == 'O')
-				{
-					break;
-				}
-		}
-		
-		while(playerToken != 'x' || playerToken != 'o' || playerToken != 'X' || playerToken != 'O'){
-			if(playerToken != 'x' || playerToken != 'o' || playerToken != 'X' || playerToken != 'O'){
+			playerToken = toupper(playerToken);
+
+			if ((playerToken != 'X') && (playerToken != 'O')) {
+				printf("%c? Not right!\r\n\n", playerToken);
+			} else {
+				computerToken = playerToken == 'X' ? 'O' : 'X';
 				break;
 			}
-			scanf("%c", &playerToken);
 		}
-		playerToken = toupper(playerToken);
-		if(playerToken == 'X'){
-			computerToken = 'O';
-		}
-		else if(playerToken == 'O'){
-			computerToken = 'X';
-		}
-		
-		printf("Selection Confirmed\n");
-		printf(" 1 | 2 | 3 \n");
-		printf("-----------\n");
-		printf(" 4 | 5 | 6 \n");
-		printf("-----------\n");
-		printf(" 7 | 8 | 9 \n");
-		
-		
+
+		printf("You have elected to play as %c\n\n", playerToken);
+		printBoard(tictactoe);
 		
 		while(win == false){
 			if(playerToken == 'X'){
