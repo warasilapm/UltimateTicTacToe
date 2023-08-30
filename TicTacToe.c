@@ -6,8 +6,8 @@
 
 bool	checkWin(char tictactoe[3][3], bool potracker[10], char x, char o);
 int		computerTurn(char tictactoe[3][3], bool potracker[10], char playerToken, char computerToken);
-void	updateBoard(char tictactoe[3][3], bool potracker[10], int position, char playerToken);
-void	printBoard(char tictactoe[3][3]);
+void updateBoard(char tictactoe[3][3], int position, char playerToken);
+void printBoard(char tictactoe[3][3]);
 
 
 int main(void)
@@ -93,7 +93,7 @@ int main(void)
 				}
 			
 				potracker[position] = true;
-				updateBoard(tictactoe, potracker, position, playerToken);
+				updateBoard(tictactoe, position, playerToken);
 				printBoard(tictactoe);
 				
 				win = checkWin(tictactoe, potracker, playerToken, computerToken);
@@ -107,7 +107,7 @@ int main(void)
 				position = computerTurn(tictactoe, potracker, playerToken, computerToken);
 				
 				potracker[position] = true;
-				updateBoard(tictactoe, potracker, position, computerToken);
+				updateBoard(tictactoe, position, computerToken);
 				printBoard(tictactoe);
 				
 				win = checkWin(tictactoe, potracker, playerToken, computerToken);
@@ -119,7 +119,7 @@ int main(void)
 				position = computerTurn(tictactoe, potracker, playerToken, computerToken);
 				
 				potracker[position] = true;
-				updateBoard(tictactoe, potracker, position, computerToken);
+				updateBoard(tictactoe, position, computerToken);
 				printBoard(tictactoe);
 				
 				win = checkWin(tictactoe, potracker, playerToken, computerToken);
@@ -143,7 +143,7 @@ int main(void)
 				}
 					
 				potracker[position] = true;
-				updateBoard(tictactoe, potracker, position, playerToken);
+				updateBoard(tictactoe, position, playerToken);
 				printBoard(tictactoe);
 				
 				win = checkWin(tictactoe, potracker, playerToken, computerToken);
@@ -443,39 +443,13 @@ int	computerTurn(char tictactoe[3][3], bool potracker[10], char playerToken, cha
 	return position;
 }
 
-void	updateBoard(char tictactoe[3][3], bool potracker[10], int position, char playerToken){
-	switch(position) {
-		case 1 :
-			tictactoe[0][0] = playerToken;
-			break;
-		case 2 :
-			tictactoe[1][0] = playerToken;
-			break;
-		case 3 :
-			tictactoe[2][0] = playerToken;
-			break;
-		case 4 :
-			tictactoe[0][1] = playerToken;
-			break;
-		case 5 :
-			tictactoe[1][1] = playerToken;
-			break;
-		case 6 :
-			tictactoe[2][1] = playerToken;
-			break;
-		case 7 :
-			tictactoe[0][2] = playerToken;
-			break;
-		case 8 :
-			tictactoe[1][2] = playerToken;
-			break;
-		case 9 :
-			tictactoe[2][2] = playerToken;
-			break;
-		 
-		default :
-			printf("Invalid Response\n");
-		}
+void updateBoard(char tictactoe[3][3], int position, char playerToken) {
+	if ((position < 1) || (9 < position)) {
+		printf("Invalid Position!\r\n");
+	} else {
+		position--;
+		tictactoe[position % 3][position / 3] = playerToken;
+	}
 }
 
 void printBoard(char tictactoe[3][3]){
