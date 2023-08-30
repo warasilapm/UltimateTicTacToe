@@ -2,7 +2,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
-#include <conio.h>
 #include <ctype.h>
 
 bool	checkWin(char tictactoe[3][3], bool potracker[10], char x, char o);
